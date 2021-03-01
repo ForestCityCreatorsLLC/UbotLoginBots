@@ -1,0 +1,14 @@
+plugin command("EliteUbot.dll", "EB Region", "ClickUp Login Process", "") {
+    navigate("https://app.clickup.com/8420489/v/e/80z49-350","Wait")
+    if($exists(<class="login-page-new__main-form">)) {
+        then {
+            type text(<email field>,"JaimeFlores@FCCreators.com","Standard")
+            type text(<password field>,"#Progressive67","Standard")
+            click(<login button>,"Left Click","No")
+        }
+        else {
+        }
+    }
+    wait for browser event("Everything Loaded","")
+    plugin command("EliteUbot.dll", "EB Alert", "SuccessFul!", "ClickUp Login Attempt:", "Information")
+}

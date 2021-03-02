@@ -1,0 +1,15 @@
+plugin command("EliteUbot.dll", "EB Region", "Airtable Log In Node", "This node logs into Airtable.") {
+    navigate("https://airtable.com/","Wait")
+    click(<login link>,"Left Click","No")
+    if($exists($element offset(<tagname="div">,12))) {
+        then {
+            type text(<email field>,"JaimeFlores@FCCreators.com","Standard")
+            type text(<password field>,"#Bcrich67","Standard")
+            click($element offset(<login button>,0),"Left Click","No")
+            wait for browser event("Everything Loaded","")
+        }
+        else {
+        }
+    }
+    plugin command("EliteUbot.dll", "EB Alert", "Successful!", "Airtable Login Attempt:", "Information")
+}

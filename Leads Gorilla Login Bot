@@ -1,0 +1,14 @@
+plugin command("EliteUbot.dll", "EB Region", "Leads Gorilla Login Process.", "") {
+    navigate("https://app.leadsgorilla.net/login","Wait")
+    if($exists(<login button>)) {
+        then {
+            type text(<email field>,"JaimeFlores@FCCreators.com","Standard")
+            type text(<password field>,"Progressive67","Standard")
+            click(<login button>,"Left Click","No")
+        }
+        else {
+        }
+    }
+    wait for browser event("Everything Loaded","")
+    plugin command("EliteUbot.dll", "EB Alert", "Successful!", "FCC Leads Gorilla Login Attempt:", "Information")
+}

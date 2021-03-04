@@ -11,5 +11,10 @@ plugin command("EliteUbot.dll", "EB Region", "Airtable Log In Node", "This node 
         else {
         }
     }
+    click(<aria-label="💼 Our Customers">,"Left Click","No")
+    wait for browser event("Everything Loaded","")
+    click(<class="caps flex-none small ml1 strong">,"Left Click","No")
     plugin command("EliteUbot.dll", "EB Alert", "Successful!", "Airtable Login Attempt:", "Information")
+}
+plugin command("EliteUbot.dll", "EB Region", "Scrapping Customer Data", "") {
 }

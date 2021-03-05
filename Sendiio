@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            background-color: black;
+
+            text-align: center;
+            }
+        .form-horizontal{
+            text-align: center;
+            width: 300px;
+            }
+        .form-control{
+            text-align: left;
+            width: 300px;
+           }
+    </style>
+    <title>Sendiio Form</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://sendiio.com/assets/js/form_assets.js"></script>
+    <div class="rendered-form"></div>
+    <form class="form-horizontal" method="post" action="https://sendiio.com/callbacks/subscription/lists">
+        <br>
+        <input type="text" class="form-control" id="name" name="name"  value="" placeholder="Your Name" required>
+        <br>
+        <input type="email_name" class="form-control" id="email" name="email"  value="" placeholder="Your Email" required>
+        <input type="hidden" name="list" id="list" value="33221"><br>
+        <input type="hidden" name="form" value="6080"><br>
+        <button type="submit" class="btn btn-default edit-form" id="save_form">Join The Community Now!</button>
+    </form><br><br>
+</body>
+</html><form action=""></form>
+
+
+*/ css */>
+html{
+    text-align: left;
+}
+body{
+    text-align: left;
+    background-color: black;
+}
+.form-horizontal{
+    text-align: left;
+}
+.form-control{
+    text-align: left;
+}

@@ -11,6 +11,13 @@ if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equa
 }
 loop(#Accounts) {
     reset account("Any")
+    clear list(%Usernames)
+    clear list(%Passwords)
+    clear list(%First Names)
+    clear list(%Last Names)
+    clear list(%Genders)
+    clear list(%What color is select)
+    clear table(&Completed Account)
     navigate("http://playground.ubotstudio.com/gauntlet/","Wait")
     wait(2)
     click(<href="http://playground.ubotstudio.com/gauntlet/account-creation-form/">,"Left Click","No")

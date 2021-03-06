@@ -1,0 +1,43 @@
+ui drop down("Accounts","1,2,3,4,5,6,7,8,9,10",#Accounts)
+ui check box("Select a color?",#Color)
+ui drop down("Country","USA,Mexican,Canada,Puerto Rico,Cuba",#Country)
+if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equals","male")) {
+    then {
+        click(<value="male">,"Left Click","No")
+    }
+    else {
+        click(<value="female">,"Left Click","No")
+    }
+}
+loop(#Accounts) {
+    reset account("Any")
+    navigate("http://playground.ubotstudio.com/gauntlet/","Wait")
+    wait(2)
+    click(<href="http://playground.ubotstudio.com/gauntlet/account-creation-form/">,"Left Click","No")
+    wait for element(<value="Submit">,"","Appear")
+    wait(2)
+    type text(<username field>,$account data("Username"),"Standard")
+    type text(<password field>,$account data("Password"),"Standard")
+    type text(<first name field>,$account data("First Name"),"Standard")
+    type text(<last name field>,$account data("Last Name"),"Standard")
+    if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equals","male")) {
+        then {
+            click(<value="male">,"Left Click","No")
+        }
+        else {
+            click(<value="female">,"Left Click","No")
+        }
+    }
+    if($comparison(#Color,"= Equals",$true)) {
+        then {
+            if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equals","male")) {
+                then {
+                    change checkbox(<value="Blue">,"Checked")
+                }
+                else {
+                    change checkbox(<value="Yellow">,"Checked")
+                }
+            }
+        }
+    }
+}

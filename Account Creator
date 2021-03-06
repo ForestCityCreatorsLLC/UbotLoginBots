@@ -16,11 +16,25 @@ loop(#Accounts) {
     click(<href="http://playground.ubotstudio.com/gauntlet/account-creation-form/">,"Left Click","No")
     wait for element(<value="Submit">,"","Appear")
     wait(2)
-    type text(<username field>,$account data("Username"),"Standard")
-    type text(<password field>,$account data("Password"),"Standard")
-    type text(<first name field>,$account data("First Name"),"Standard")
-    type text(<last name field>,$account data("Last Name"),"Standard")
-    if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equals","male")) {
+    set(#Username,$account data("Username"),"Local")
+    add item to list(%Usernames,#Username,"Don\'t Delete","Local")
+    type text(<username field>,#Username,"Standard")
+    add item to list(%Passwords,#Password,"Don\'t Delete","Local")
+    set(#Password,$account data("Password"),"Local")
+    type text(<password field>,#Password,"Standard")
+    set(#First Name,$account data("First Name"),"Local")
+    add item to list(%First Names,#First Name,"Don\'t Delete","Local")
+    type text(<first name field>,#First Name,"Standard")
+    set(#Last Name,$account data("Last Name"),"Local")
+    add item to list(%Last Names,#Last Name,"Don\'t Delete","Local")
+    type text(<last name field>,#Last Name,"Standard")
+    set(#Gender,$change text casing($account data("Gender"),"Lower Case"),"Local")
+    add item to list(%Genders,#Gender,"Don\'t Delete","Local")
+    set(#Is Color Selected,$comparison(#Color,"= Equals",$true),"Local")
+    set(#Blue,$comparison(#Gender,"= Equals","male"),"Local")
+    set(#Yellow,$comparison(#Gender,"= Equals","female"),"Local")
+    set(#What Color,#Gender,"Local")
+    if($comparison(#Gender,"= Equals","male")) {
         then {
             click(<value="male">,"Left Click","No")
         }
@@ -28,16 +42,16 @@ loop(#Accounts) {
             click(<value="female">,"Left Click","No")
         }
     }
-    if($comparison(#Color,"= Equals",$true)) {
+    if(#Is Color Selected) {
         then {
-            if($comparison($change text casing($account data("Gender"),"Lower Case"),"= Equals","male")) {
+            if(#Gender) {
                 then {
                     change checkbox(<value="Blue">,"Checked")
                 }
                 else {
                     change checkbox(<value="Yellow">,"Checked")
+                    add item to list(%What color is select,#What Color,"Don\'t Delete","Local")
                 }
             }
         }
     }
-}

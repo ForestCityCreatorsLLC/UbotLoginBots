@@ -36,6 +36,7 @@ loop(#Accounts) {
     set(#Female,$comparison(#Gender,"= Equals","female"),"Local")
     set(#Yellow,#Female,"Local")
     set(#What Color,$either(#Blue,#Yellow),"Local")
+    set(#Row,0,"Local")
     if($comparison(#Gender,"= Equals","male")) {
         then {
             click(<value="male">,"Left Click","No")
@@ -57,4 +58,9 @@ loop(#Accounts) {
             }
         }
     }
+    set table cell(&Completed Account,#Row,0,%Usernames)
+    set table cell(&Completed Account,#Row,1,%Passwords)
+    set table cell(&Completed Account,#Row,2,%First Names)
+    set table cell(&Completed Account,#Row,3,%Last Names)
+    set table cell(&Completed Account,#Row,4,%Genders)
 }

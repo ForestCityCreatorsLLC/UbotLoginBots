@@ -19,8 +19,8 @@ loop(#Accounts) {
     set(#Username,$account data("Username"),"Local")
     add item to list(%Usernames,#Username,"Don\'t Delete","Local")
     type text(<username field>,#Username,"Standard")
-    add item to list(%Passwords,#Password,"Don\'t Delete","Local")
     set(#Password,$account data("Password"),"Local")
+    add item to list(%Passwords,#Password,"Don\'t Delete","Local")
     type text(<password field>,#Password,"Standard")
     set(#First Name,$account data("First Name"),"Local")
     add item to list(%First Names,#First Name,"Don\'t Delete","Local")
@@ -31,9 +31,11 @@ loop(#Accounts) {
     set(#Gender,$change text casing($account data("Gender"),"Lower Case"),"Local")
     add item to list(%Genders,#Gender,"Don\'t Delete","Local")
     set(#Is Color Selected,$comparison(#Color,"= Equals",$true),"Local")
-    set(#Blue,$comparison(#Gender,"= Equals","male"),"Local")
-    set(#Yellow,$comparison(#Gender,"= Equals","female"),"Local")
-    set(#What Color,#Gender,"Local")
+    set(#Male,$comparison(#Gender,"= Equals","male"),"Local")
+    set(#Blue,#Male,"Local")
+    set(#Female,$comparison(#Gender,"= Equals","female"),"Local")
+    set(#Yellow,#Female,"Local")
+    set(#What Color,$either(#Blue,#Yellow),"Local")
     if($comparison(#Gender,"= Equals","male")) {
         then {
             click(<value="male">,"Left Click","No")
@@ -44,7 +46,7 @@ loop(#Accounts) {
     }
     if(#Is Color Selected) {
         then {
-            if(#Gender) {
+            if($comparison(#Gender,"= Equals","male")) {
                 then {
                     change checkbox(<value="Blue">,"Checked")
                 }
@@ -55,3 +57,4 @@ loop(#Accounts) {
             }
         }
     }
+}
